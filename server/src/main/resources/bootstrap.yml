@@ -7,7 +7,12 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: dev
+    bus:
+      id: ${spring.application.name}:${spring.cloud.config.profile}:${random.value}
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka/
+logging:
+  level:
+    org.springframework.cloud.bus: debug
