@@ -7,8 +7,17 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: dev
+
     bus:
       id: ${spring.application.name}:${spring.cloud.config.profile}:${random.value}
+    stream:
+      bindings:
+        myMessage:
+          group: order
+          content-type: application/json
+        myMessage2:
+          group: order2
+          content-type: application/json
 eureka:
   client:
     service-url:
