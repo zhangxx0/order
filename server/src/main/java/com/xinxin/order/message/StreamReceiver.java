@@ -17,7 +17,7 @@ public class StreamReceiver {
         log.info("StreamReceiver: {}", message);
     }*/
 
-    @StreamListener (value = StreamClient.INPUT)
+    @StreamListener(value = StreamClient.INPUT)
     @SendTo(StreamClient.INPUT2)
     public String process(OrderDTO message) {
         log.info("StreamRecerver1: {}", message);

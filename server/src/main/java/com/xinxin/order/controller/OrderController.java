@@ -14,6 +14,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -29,6 +30,7 @@ public class OrderController {
     private OrderService orderService;
 
     /**
+     * 创建订单 买家调用
      * 1. 参数检验
      * 2. 查询商品信息(调用商品服务)
      * 3. 计算总价
@@ -38,7 +40,7 @@ public class OrderController {
     @PostMapping("/create")
     public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm,
                                                 BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             log.error("【创建订单】参数不正确, orderForm={}", orderForm);
             throw new OrderException(ResultEnum.PARAM_ERROR.getCode(),
                     bindingResult.getFieldError().getDefaultMessage());
@@ -55,6 +57,17 @@ public class OrderController {
         Map<String, String> map = new HashMap<>();
         map.put("orderId", result.getOrderId());
         return ResultVOUtil.success(map);
+    }
+
+
+    /**
+     * 完结订单 卖家调用
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/finish")
+    public ResultVO<OrderDTO> finish(@RequestParam("orderId") String orderId) {
+        return ResultVOUtil.success(orderService.finish(orderId));
     }
 
 }

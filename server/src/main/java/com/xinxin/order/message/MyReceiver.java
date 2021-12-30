@@ -24,6 +24,7 @@ public class MyReceiver {
 
     /**
      * 数码供应商服务 接收消息
+     *
      * @param message
      */
     @RabbitListener(bindings = @QueueBinding(
@@ -37,6 +38,7 @@ public class MyReceiver {
 
     /**
      * 水果供应商服务 接收消息
+     *
      * @param message
      */
     @RabbitListener(bindings = @QueueBinding(

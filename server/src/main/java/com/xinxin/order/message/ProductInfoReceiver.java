@@ -26,7 +26,8 @@ public class ProductInfoReceiver {
     public void process(String message) {
         // message -> ProductInfoOutput
         List<ProductInfoOutput> productInfoOutputList = (List<ProductInfoOutput>) JsonUtil.fromJson(message,
-                new TypeReference<List<ProductInfoOutput>>() {});
+                new TypeReference<List<ProductInfoOutput>>() {
+                });
 
         log.info("从队列【{}】接收到消息：{}", "productInfo", productInfoOutputList);
 

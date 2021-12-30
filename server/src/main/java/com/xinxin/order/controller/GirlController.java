@@ -12,7 +12,7 @@ public class GirlController {
     private GirlConfig girlConfig;
 
     @GetMapping("/girl/print")
-    public String print(){
+    public String print() {
         return "name: " + girlConfig.getName() + "，age: " + girlConfig.getAge();
     }
 

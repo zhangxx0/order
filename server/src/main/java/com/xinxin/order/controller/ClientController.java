@@ -24,7 +24,7 @@ public class ClientController {
 
     /**
      * http://localhost:8081/getProductMsg
-     *
+     * <p>
      * 测试服务间使用RestTemplate调用
      * return: this is product' msg
      * 2021年8月13日15:09:13
@@ -46,7 +46,7 @@ public class ClientController {
 
     @GetMapping("/getProductList")
     public String getProductList() {
-        List<ProductInfoOutput> list = productClient.listForOrder(Arrays.asList("157875196366160022","157875227953464068"));
+        List<ProductInfoOutput> list = productClient.listForOrder(Arrays.asList("157875196366160022", "157875227953464068"));
         log.info("response={}", list);
         return "ok";
     }
