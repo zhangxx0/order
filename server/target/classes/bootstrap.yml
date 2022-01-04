@@ -7,6 +7,10 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: dev
+    sentinel:
+      transport:
+        port: 18763
+        dashboard: localhost:8748
 
     bus:
       id: ${spring.application.name}:${spring.cloud.config.profile}:${random.value}
@@ -18,6 +22,7 @@ spring:
         myMessage2:
           group: order2
           content-type: application/json
+
 eureka:
   client:
     service-url:
@@ -25,3 +30,6 @@ eureka:
 logging:
   level:
     org.springframework.cloud.bus: debug
+feign:
+  sentinel:
+    enabled: true
