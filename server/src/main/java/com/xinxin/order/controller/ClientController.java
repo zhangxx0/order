@@ -1,12 +1,13 @@
 package com.xinxin.order.controller;
 
+import com.xinxin.order.client.ProductBalanceClient;
 import com.xinxin.product.client.ProductClient;
 import com.xinxin.pruduct.common.DecreaseStockInput;
 import com.xinxin.pruduct.common.ProductInfoOutput;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -16,11 +17,14 @@ import java.util.List;
 @Slf4j
 public class ClientController {
 
-    @Autowired
-    private LoadBalancerClient loadBalancerClient;
+//    @Autowired
+//    private LoadBalancerClient loadBalancerClient;
 
     @Autowired
     ProductClient productClient;
+
+    @Autowired
+    ProductBalanceClient productBalanceClient;
 
     /**
      * http://localhost:8081/getProductMsg
@@ -55,6 +59,16 @@ public class ClientController {
     public String decreaseStock() {
         productClient.decreaseStock(Arrays.asList(new DecreaseStockInput("164103465734242707", 10)));
         return "ok";
+    }
+
+    /**
+     * feign负载均衡测试
+     * @param name
+     * @return
+     */
+    @GetMapping("/loadbanlanceTest")
+    public String loadbanlanceTest(@RequestParam(name = "name") String name) {
+        return productBalanceClient.loadbanlanceTest(name);
     }
 
 }

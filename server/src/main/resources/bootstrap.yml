@@ -3,13 +3,12 @@ spring:
     name: order
 
   cloud:
-    config:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        prefix: order
       discovery:
-        enabled: true
-        service-id: CONFIG
-      profile: dev
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8761/eureka/
+        server-addr: 127.0.0.1:8848
+  profiles:
+    active: dev
