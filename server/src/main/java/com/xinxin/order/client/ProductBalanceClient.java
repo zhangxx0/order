@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "product", contextId = "product2")
 public interface ProductBalanceClient {
 
-    @GetMapping("/loadbanlancoceTest")
+    @GetMapping("/loadbanlanceTest")
     String loadbanlanceTest(@RequestParam(value = "name",required = false) String name);
 
 }
