@@ -5,10 +5,10 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 101.43.186.49:8848
         file-extension: yaml
         prefix: order
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 101.43.186.49:8848
   profiles:
     active: dev
